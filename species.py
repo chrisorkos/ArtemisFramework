@@ -1,0 +1,93 @@
+class Species:
+    def __init__(self,
+                 name=None,
+                 species_num=None,
+                 lifespan=0.0,
+                 minimum_population_size=0.0,
+                 predator_list=None,
+                 resource_usage_conversion=0.0,
+                 is_dispersal=False,
+                 dispersal_parameters=None,
+                 is_dispersal_path_restricted=False,
+                 always_move_with_minimum=False,
+                 dispersal_penalty=0.0,
+                 initial_population_mechanism=None,
+                 initial_population_parameters=None,
+                 seasonal_period=None,
+                 growth_function=None,
+                 growth_parameters=None,
+                 is_growth_offset=False,
+                 growth_annual_duration=None,
+                 growth_offset_species=None,
+                 is_growth_offset_local=False,
+                 growth_offset_local=None,
+                 predation_parameters=None,
+                 is_predation_only_prevents_death=False,
+                 is_nonlocal_foraging=False,
+                 is_foraging_path_restricted=False,
+                 is_pure_direct_impact=False,
+                 pure_direct_impact_parameters=None,
+                 is_direct_offset=False,
+                 direct_annual_duration=None,
+                 direct_offset_species=None,
+                 direct_offset_local=None,
+                 is_direct_offset_local=False,
+                 direct_impact_on_me=None,
+                 is_perturbs_environment=False,
+                 perturbation_parameters=None):
+        
+        self.name = name
+        self.species_num = species_num
+        self.lifespan = lifespan
+        self.minimum_population_size = minimum_population_size
+        self.predator_list = predator_list if predator_list is not None else []
+        self.resource_usage_conversion = resource_usage_conversion
+        self.is_dispersal = is_dispersal
+        self.dispersal_parameters = dispersal_parameters if dispersal_parameters is not None else {}
+        self.is_dispersal_path_restricted = is_dispersal_path_restricted
+        self.always_move_with_minimum = always_move_with_minimum
+        self.dispersal_efficiency = 1.0 - min(0.999999999, dispersal_penalty)  # convert penalty to efficiency in [0, 1]
+        self.initial_population_mechanism = initial_population_mechanism
+        self.initial_population_parameters = initial_population_parameters if initial_population_parameters is not None else {}
+        self.seasonal_period = seasonal_period
+        self.growth_function = growth_function
+        self.growth_parameters = growth_parameters if growth_parameters is not None else {}
+        self.is_growth_offset = is_growth_offset
+        self.growth_annual_duration = int(growth_annual_duration) if growth_annual_duration is not None else growth_annual_duration
+        self.growth_offset_species = growth_offset_species
+        self.is_growth_offset_local = is_growth_offset_local
+        self.growth_offset_local = growth_offset_local
+        self.predation_parameters = predation_parameters if predation_parameters is not None else {}
+        self.is_predation_only_prevents_death = is_predation_only_prevents_death
+        self.is_nonlocal_foraging = is_nonlocal_foraging
+        self.is_foraging_path_restricted = is_foraging_path_restricted
+        self.is_pure_direct_impact = is_pure_direct_impact
+        self.pure_direct_impact_parameters = pure_direct_impact_parameters if pure_direct_impact_parameters is not None else {}
+        self.is_direct_offset = is_direct_offset
+        self.direct_annual_duration = int(direct_annual_duration) if direct_annual_duration is not None else direct_annual_duration
+        self.direct_offset_species = direct_offset_species
+        self.is_direct_offset_local = is_direct_offset_local
+        self.direct_offset_local = direct_offset_local
+        self.direct_impact_on_me = direct_impact_on_me
+        self.is_perturbs_environment = is_perturbs_environment
+        self.perturbation_parameters = perturbation_parameters if perturbation_parameters is not None else {}
+        
+        # Foraging-related attributes
+        self.current_r_value = None
+        self.current_prey_dict = None
+        self.current_predation_efficiency = None
+        self.current_predation_focus = None
+        self.current_predation_rate = None
+        self.current_foraging_mobility = None
+        self.current_foraging_kappa = None
+        self.current_max_foraging_path_length = None
+        self.current_minimum_link_strength_foraging = None
+        
+        # Dispersal-related attributes
+        self.current_dispersal_mobility = None
+        self.current_dispersal_direction = None
+        self.current_dispersal_mechanism = None
+        self.current_coefficients_lists = None
+        self.current_max_dispersal_path_length = None
+        self.current_minimum_link_strength_dispersal = None
+
